@@ -1,4 +1,5 @@
 const config = require('../config.json');
+const fs = require("fs");
 const { red_dark, green_light, pink, blue_dark } = require('../colours.json');
 
 module.exports = {
@@ -6,7 +7,8 @@ module.exports = {
 	description: 'Creación de un canal exclusivo para la whitelist del usuario!',
 	async execute(message, user, MessageEmbed) {
         const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(user.id));
-        
+        let storedData = require("../store/data.json");
+        console.log("storedData:", storedData);
         try {
             for (const reaction of userReactions.values()) {
                 await reaction.users.remove(user.id);
@@ -27,6 +29,18 @@ module.exports = {
        }
         server.channels.create(`whitelist-${user.id}`, {type: "text"})
         .then(channel => {
+            // storedData [user.id] = {
+            //     whitelist: {
+            //         questionsCont: 10,
+            //         actualCont: 0,
+            //         questions: []
+            //     }
+            // };
+            // fs.writeFile("/store/data.json", JSON.stringify(storedData, null, 4), err => {
+            //     if (err) throw err;
+            //     console.log("log generado con éxito");
+            // });
+
             channel.setParent(config.whitelistCategory).then(channel => {
                 channel.overwritePermissions([
                     {
