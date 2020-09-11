@@ -1,4 +1,5 @@
 const config = require('../config.json');
+const fs = require("fs");
 const { blue_dark, orange } = require('../colours.json');
 
 module.exports = {
@@ -7,14 +8,7 @@ module.exports = {
 	async execute(message, user, MessageEmbed) {
         const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(user.id));
         const actualWhitelistChannel = message.guild.channels.cache.get(message.channel.id);
-        
-        try {
-            for (const reaction of userReactions.values()) {
-                await reaction.users.remove(user.id);
-            }
-        } catch (error) {
-            console.error('Failed to remove reactions.');
-        }
+        message.reactions.removeAll();
         
         actualWhitelistChannel.overwritePermissions([
             {
@@ -50,7 +44,7 @@ module.exports = {
                 const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
                 .setColor(blue_dark)
                 .setTitle('WHITELIST FINALIZADA')
-                .setDescription(`<@${user.id}> Ha finalizado el tiempo reglamentario. \n\n Un miembro del Staff corregirá tu presentación lo antes posible. *(Reaccionará en los siguientes emotes para indicar si la whitelist es **APTA** o no).*`)
+                .setDescription(`<@${user.id}> Ha finalizado el tiempo reglamentario. \n\n Un miembro del Staff corregirá tu presentación lo antes posible. *(El Staff Reaccionará en los siguientes emotes para indicar si la whitelist es **APTA** o no).*`)
                 .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
                 
                 actualWhitelistChannel.send(embedDMMessage).then( async sentMessage => {
@@ -63,12 +57,44 @@ module.exports = {
                     }
                 });
             });
-        }, 15000);
+        }, 600000); //600000 for 10min wait
+
+        const tmpJson = fs.readFileSync(__dirname + "/../store/data.json");
+        const questionsFile = fs.readFileSync(__dirname + "/../store/questions.json");
+        const questionsFileParsed = JSON.parse(questionsFile);
+        const questions = questionsFileParsed.questions;
+        let storedData = JSON.parse(tmpJson);
+        let userData = storedData[user.id];
+        let userRandomQuestions = shuffle(questions).slice(0,10); 
+        
+        userRandomQuestions.forEach((question, index) => {
+            storedData[user.id].whitelist.questions[index] = {
+                question: question,
+                answer: ""
+            }
+            fs.writeFile(__dirname + "/../store/data.json", JSON.stringify(storedData, null, 4), err => {
+                if (err) throw err;
+                console.log("registro actualizado con éxito");
+                
+            });
+        });
+
+        userData = storedData[user.id];
         const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
             .setColor(orange)
-            .addField(`Pregunta Nro.1`, "¿Será esto una pregunta?")
+            .addField(`Pregunta Nro.${userData.whitelist.actualCont + 1}`, userData.whitelist.questions[0].question)
             .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
-            
-            message.reply(embedDMMessage);
+        message.reply(embedDMMessage);
+
+        function shuffle(a) {
+            var j, x, i;
+            for (i = a.length - 1; i > 0; i--) {
+                j = Math.floor(Math.random() * (i + 1));
+                x = a[i];
+                a[i] = a[j];
+                a[j] = x;
+            }
+            return a;
+        }
 	},
 };

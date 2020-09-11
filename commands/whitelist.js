@@ -8,7 +8,6 @@ module.exports = {
 	async execute(message, user, MessageEmbed) {
         const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(user.id));
         let storedData = require("../store/data.json");
-        console.log("storedData:", storedData);
         try {
             for (const reaction of userReactions.values()) {
                 await reaction.users.remove(user.id);
@@ -17,8 +16,13 @@ module.exports = {
             console.error('Failed to remove reactions.');
         }
 
+        const tmpJson = fs.readFileSync(__dirname + "/../store/data.json");
+        let DBData = JSON.parse(tmpJson);
+        let userData = DBData[user.id] || null;
+
         let server = message.guild;
-        if (server.channels.cache.some(channel => channel.name == `whitelist-${user.id}`)) {
+        // if (server.channels.cache.some(channel => channel.name == `whitelist-${user.id}`)) {
+        if(userData && userData.whitelist.approved) {
             const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
             .setColor(red_dark)
             .addField('WHITELIST', "Has intentado iniciar un nuevo proceso de **Whitelist** pero ya tienes uno en curso. *Si tienes algún problema, no dudes en utilizar los canales de soporte.*\n")
@@ -29,17 +33,23 @@ module.exports = {
        }
         server.channels.create(`whitelist-${user.id}`, {type: "text"})
         .then(channel => {
-            // storedData [user.id] = {
-            //     whitelist: {
-            //         questionsCont: 10,
-            //         actualCont: 0,
-            //         questions: []
-            //     }
-            // };
-            // fs.writeFile("/store/data.json", JSON.stringify(storedData, null, 4), err => {
-            //     if (err) throw err;
-            //     console.log("log generado con éxito");
-            // });
+            storedData [user.id] = {
+                user: {
+                    discord: `${user.username}#${user.discriminator}`,
+                    username: user.username,
+                    nickname: message.guild.member(user).displayName
+                },
+                whitelist: {
+                    approved: false,
+                    questionsCont: 10,
+                    actualCont: 0,
+                    questions: []
+                }
+            };
+            fs.writeFile(__dirname + "/../store/data.json", JSON.stringify(storedData, null, 4), err => {
+                if (err) throw err;
+                console.log("registro generado con éxito");
+            });
 
             channel.setParent(config.whitelistCategory).then(channel => {
                 channel.overwritePermissions([
@@ -61,7 +71,7 @@ module.exports = {
                     .setColor(blue_dark)
                     .setTitle('WHITELIST')
                     .setDescription(`<@${user.id}> Has iniciado un proceso de Whitelist.`)
-                    .addField('RECUERDA', 'Tendrás **1 minuto** para responder cada pregunta, transcurrido el minuto, el bot dará por incorrecta la respuesta y pasará a la siguiente pregunta.\n')
+                    .addField('RECUERDA', 'Tendrás **10 minutos** para responder el cuestionario, transcurrido el tiempo, el bot finalizará el proceso registrando el total de preguntas respondidas.\n')
                     .addField('INDICACIONES', 'Si estás listo para comenzar, reacciona con el emote 🕑. De lo contrario, si quieres borrar la solicitud, reacciona con el emote 🗑')
                     .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
                     
