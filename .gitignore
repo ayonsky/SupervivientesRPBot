@@ -1,5 +1,4 @@
-/node_modules
-store/users/
-node_modules
 config.json
-SupervivientesRPBot.code-workspace
+/node_modules
+store/users/*
+node_modules
