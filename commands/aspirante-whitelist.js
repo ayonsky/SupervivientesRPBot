@@ -8,7 +8,7 @@ module.exports = {
 	execute(oldMember, newMember, MessageEmbed) {
         const userApplicant = oldMember.guild.members.cache.find(user => user.id === oldMember.id);
         const aspiranteRole = oldMember.guild.roles.cache.find(role => role.name === "Aspirante");
-        const channel = oldMember.guild.channels.cache.get("755069333922775073");
+        const channel = oldMember.guild.channels.cache.get(config.whitelistFinalizadaVoiceChannel);
         const tmpJson = null;
         let storedData = null;
 
@@ -19,7 +19,7 @@ module.exports = {
             console.log(err)
         }
 
-        if(newMember.channelID === "755069617902452861") { // FUNCION QUE CONTROLA CUANDO CONECTA UN USUARIO AL CANAL DE VOZ
+        if(newMember.channelID === config.presentarWhitelistVoiceChannel) { // FUNCION QUE CONTROLA CUANDO CONECTA UN USUARIO AL CANAL DE VOZ
             // User Joins a voice channel
             setTimeout(() =>  {
                 try {
@@ -59,7 +59,7 @@ module.exports = {
             }); 
         } 
         
-        if(oldMember.channelID === "755069617902452861"){ // FUNCION QUE CONTROLA CUANDO UN USUARIO DEJA EL CANAL DE VOZ
+        if(oldMember.channelID === config.presentarWhitelistVoiceChannel){ // FUNCION QUE CONTROLA CUANDO UN USUARIO DEJA EL CANAL DE VOZ
             // User leaves a voice channel
             console.log("Se ha desconectado un usuario que presentaba la Whitelist")
             
