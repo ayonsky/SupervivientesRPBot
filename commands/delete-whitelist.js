@@ -15,10 +15,7 @@ module.exports = {
     
         channelToBeDeleted.send(newEmbed).then(() => {
             setTimeout(() =>  {channelToBeDeleted.delete().then(() => {
-                const tmpJson = fs.readFileSync(__dirname + "/../store/data.json");
-                let storedData = JSON.parse(tmpJson);
-                delete storedData[user.id];
-                fs.writeFile(__dirname + "/../store/data.json", JSON.stringify(storedData, null, 4), err => {
+                fs.unlink(__dirname + `/../store/users/${user}.json`, err => {
                     if (err) throw err;
                     console.log("registro eliminado con éxito");
                 });

@@ -14,7 +14,7 @@ module.exports = {
         .setDescription('Bienvenido al sistema automatizado para presentación de Whitelist de **SupervivientesRP**.\n\n El Bot te hará algunas preguntas relacionadas con **la normativa y el Lore**.')
         .setThumbnail('https://i.imgur.com/A3WYVlK.png')
         .addFields(
-            { name: 'INDICACIONES', value: 'Tendrás 10 minutos para responder el cuestionario, transcurrido el tiempo, el bot finalizará el proceso registrando el total de preguntas respondidas.\n\n Deberás esperar a que un miembro del Staff revise tu resultado para recibir o no el **APTO** y poder continuar con la creación de la historia de tu personaje. Te recomiendo leerte bien la normativa antes de empezar.\n\n Para iniciar el proceso debes reaccionar al emote 📩' },
+            { name: 'INDICACIONES', value: 'Tienes 10 minutos para responder el cuestionario, transcurrido el tiempo, el bot finalizará el proceso registrando el total de preguntas respondidas.\n\n Deberás esperar a que un miembro del Staff revise tu resultado para recibir o no el **APTO** y poder continuar con la creación de la historia de tu personaje. Te recomiendo leerte bien la normativa antes de empezar.\n\n Para iniciar el proceso debes reaccionar al emote 📩' },
         )
         // .setImage('https://i.imgur.com/A3WYVlK.png')
         .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');

@@ -1,0 +1,55 @@
+{
+    "user": {
+        "discord": "Zhezevu#7778",
+        "username": "Zhezevu",
+        "nickname": "Zhezevu"
+    },
+    "whitelist": {
+        "id": "755120062049812601",
+        "approved": false,
+        "questionsCont": 10,
+        "actualCont": 10,
+        "questions": [
+            {
+                "question": "**[LORE]** ¿De que forma se inició la terrible enfermedad reportada en todo el mundo?",
+                "answer": "huuuhbub"
+            },
+            {
+                "question": "¿Puedes utilizar el canal de #📻radio-on-rol para mantener una conversación en binomio?",
+                "answer": "sfghsfghsfgh"
+            },
+            {
+                "question": "¿Qué es el **Metagaming** y da un ejemplo?",
+                "answer": "sfghsfghsfh"
+            },
+            {
+                "question": "¿Qué es el **Combat Login**?",
+                "answer": "gfhsfghsfgh"
+            },
+            {
+                "question": "¿De qué forma puedes entrar a una base ajena?",
+                "answer": "sfghsfghsfgh"
+            },
+            {
+                "question": "¿Cuál es el número máximo permitido para ir en grupo?",
+                "answer": "sfghsfghsfgh"
+            },
+            {
+                "question": "¿De que forma puedes robar un vehículo?",
+                "answer": "sfghsfghsfgh"
+            },
+            {
+                "question": "¿Cuál es la única protección permitida para tu vehículo?",
+                "answer": "sfghsfghsfgh"
+            },
+            {
+                "question": "¿Qué es un **Character Kill (CK)** y quien lo autoriza?",
+                "answer": "sfghsfghsfghsfh"
+            },
+            {
+                "question": "Durante un secuestro o robo, ¿Qué tiene que suceder para tu poder matar (hacerle un PK) al secuestrado?",
+                "answer": "sghsfghsfghsfgh"
+            }
+        ]
+    }
+}

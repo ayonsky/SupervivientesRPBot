@@ -8,11 +8,11 @@ module.exports = {
 	async execute(message, user, MessageEmbed) {
         const staffUser = message.guild.members.cache.find(u => u.id === user.id);
         if(staffUser.roles.cache.some(r=>["Fundadores", "Administrador", "Lore Admin", "Moderador"].includes(r.name)) ) {
-            const tmpJson = fs.readFileSync(__dirname + "/../store/data.json");
+            const tmpJson = fs.readFileSync(__dirname + `/../store/users/${user.id}.json`);
             let storedData = JSON.parse(tmpJson);
 
-            storedData[user.id].whitelist.approved = false;
-            fs.writeFile(__dirname + "/../store/data.json", JSON.stringify(storedData, null, 4), err => {
+            storedData.whitelist.approved = false;
+            fs.writeFile(__dirname + `/../store/users/${user.id}.json`, JSON.stringify(storedData, null, 4), err => {
                 if (err) throw err;
                 console.log("registro actualizado con éxito");
                 const userApplicantID = message.channel.name.substring(10);

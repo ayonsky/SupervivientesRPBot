@@ -59,27 +59,25 @@ module.exports = {
             });
         }, 600000); //600000 for 10min wait
 
-        const tmpJson = fs.readFileSync(__dirname + "/../store/data.json");
+        const tmpJson = fs.readFileSync(__dirname + `/../store/users/${user.id}.json`);
         const questionsFile = fs.readFileSync(__dirname + "/../store/questions.json");
         const questionsFileParsed = JSON.parse(questionsFile);
         const questions = questionsFileParsed.questions;
-        let storedData = JSON.parse(tmpJson);
-        let userData = storedData[user.id];
+        let userData = JSON.parse(tmpJson);
         let userRandomQuestions = shuffle(questions).slice(0,10); 
         
-        userRandomQuestions.forEach((question, index) => {
-            storedData[user.id].whitelist.questions[index] = {
+        userRandomQuestions.forEach(async (question, index) => {
+            userData.whitelist.questions[index] = {
                 question: question,
                 answer: ""
             }
-            fs.writeFile(__dirname + "/../store/data.json", JSON.stringify(storedData, null, 4), err => {
+            await fs.writeFile(__dirname + `/../store/users/${user.id}.json`, JSON.stringify(userData, null, 4), err => {
                 if (err) throw err;
                 console.log("registro actualizado con éxito");
                 
             });
         });
 
-        userData = storedData[user.id];
         const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
             .setColor(orange)
             .addField(`Pregunta Nro.${userData.whitelist.actualCont + 1}`, userData.whitelist.questions[0].question)

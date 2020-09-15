@@ -7,7 +7,6 @@ module.exports = {
 	description: 'Creación de un canal exclusivo para la whitelist del usuario!',
 	async execute(message, user, MessageEmbed) {
         const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(user.id));
-        let storedData = require("../store/data.json");
         try {
             for (const reaction of userReactions.values()) {
                 await reaction.users.remove(user.id);
@@ -16,13 +15,16 @@ module.exports = {
             console.error('Failed to remove reactions.');
         }
 
-        const tmpJson = fs.readFileSync(__dirname + "/../store/data.json");
-        let DBData = JSON.parse(tmpJson);
-        let userData = DBData[user.id] || null;
+        let path = __dirname + `/../store/users/${user.id}.json`;
+        let userData = false;
 
+        if (fs.existsSync(path)) { 
+            const tmpJson = fs.readFileSync(path);
+            userData = JSON.parse(tmpJson);
+        }
+        
         let server = message.guild;
-        // if (server.channels.cache.some(channel => channel.name == `whitelist-${user.id}`)) {
-        if(userData && userData.whitelist.approved) {
+        if (server.channels.cache.some(channel => channel.name == `whitelist-${user.id}`) || (userData && userData.whitelist.approved)) {
             const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
             .setColor(red_dark)
             .addField('WHITELIST', "Has intentado iniciar un nuevo proceso de **Whitelist** pero ya tienes uno en curso. *Si tienes algún problema, no dudes en utilizar los canales de soporte.*\n")
@@ -33,22 +35,24 @@ module.exports = {
        }
         server.channels.create(`whitelist-${user.id}`, {type: "text"})
         .then(channel => {
-            storedData [user.id] = {
+            let userFileData = {
                 user: {
                     discord: `${user.username}#${user.discriminator}`,
                     username: user.username,
                     nickname: message.guild.member(user).displayName
                 },
                 whitelist: {
+                    id: channel.id,
                     approved: false,
                     questionsCont: 10,
                     actualCont: 0,
                     questions: []
                 }
             };
-            fs.writeFile(__dirname + "/../store/data.json", JSON.stringify(storedData, null, 4), err => {
+
+            fs.writeFile(__dirname + `/../store/users/${user.id}.json`, JSON.stringify(userFileData, null, 4),  err => {
                 if (err) throw err;
-                console.log("registro generado con éxito");
+                console.log("registro creado con éxito");
             });
 
             channel.setParent(config.whitelistCategory).then(channel => {

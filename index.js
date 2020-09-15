@@ -21,6 +21,10 @@ client.once('ready', () => {
     client.commands.get('info').execute(client, MessageEmbed);
 });
 
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    client.commands.get('aspirante-whitelist').execute(oldMember, newMember, MessageEmbed);
+});
+
 client.on('messageReactionAdd', (messageReaction, user) => {
     const { message, emoji } = messageReaction;
 

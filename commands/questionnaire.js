@@ -1,7 +1,7 @@
 const config = require('../config.json');
 const fs = require("fs");
 const { orange, green_dark, red_dark } = require('../colours.json');
-let cont = 2;
+
 module.exports = {
 	name: 'questionnarie',
 	description: 'Batería de preguntas para Whitelist!',
@@ -9,24 +9,23 @@ module.exports = {
         // TODO: Prohibir que el usuario escriba hasta que el bot no le asigne una nueva preguna
         const author = message.author;
         message.channel.updateOverwrite(author, { SEND_MESSAGES: false }).then(async () =>{
-            const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(user.id));
+            const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(user));
             try {
                 for (const reaction of userReactions.values()) {
-                    await reaction.users.remove(user.id);
+                    await reaction.users.remove(user);
                 }
             } catch (error) {
                 console.error('Failed to remove reactions.');
             }
             
-            const tmpJson = fs.readFileSync(__dirname + "/../store/data.json");
-            let storedData = JSON.parse(tmpJson);
-            let userData = storedData[user];
+            const tmpJson = fs.readFileSync(__dirname + `/../store/users/${user}.json`);
+            let userData = JSON.parse(tmpJson);
             let cont = userData.whitelist.actualCont + 1;
-            if(storedData[user].whitelist.questions[userData.whitelist.actualCont]){
-                storedData[user].whitelist.questions[userData.whitelist.actualCont].answer = message.content;
-                storedData[user].whitelist.actualCont = cont;
+            if(userData.whitelist.questions[userData.whitelist.actualCont]){
+                userData.whitelist.questions[userData.whitelist.actualCont].answer = message.content;
+                userData.whitelist.actualCont = cont;
 
-                fs.writeFile(__dirname + "/../store/data.json", JSON.stringify(storedData, null, 4), err => {
+                fs.writeFile(__dirname + `/../store/users/${user}.json`, JSON.stringify(userData, null, 4), err => {
                     if (err) throw err;
                     console.log("registro actualizado con éxito");
                     if(userData.whitelist.questions[cont]){
