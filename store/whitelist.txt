@@ -1,0 +1,56 @@
+//Players not included in the whitelist.txt won't be able to connect to this server.
+//Players can be added/removed while the server is running and change will come in effect immediately, kicking the removed player.
+//---------------------------------------------------------------------------------------------------------------------------------
+//To whitelist a player, add his player ID (44 characters long ID) which can be found in the admin log file (.ADM).
+//---------------------------------------------------------------------------------------------------------------------------------
+//For comments use the // prefix. It can be used after an inserted ID, to easily mark it.
+
+1111111111112222222222222333333333XXXXXXAAAA	//Example of a character ID
+FEzwcml2t1k7HIUxrUMy6lMfOVO-6x4Al4oM7n68Y_8=	// Ayonsky
+cVKoBisveDPgu4FZ44CP2yqduEh9VqILk7Bw5CrINZ8=	// Magusar | Zeta | Darkest Knight
+rEIIwlH3adi3R1L_aXnWuXXC3SiTAHkvMpl8pNqAQaw=	// Pavel | Igor | bigroka
+GpbsOFFfVwKAEJmMk0h4kDvz7Yl7ePEtb6FmMqqzP2k=	// Ramiro Juarez
+_9W74pTram39pa56OFWBBwbvi12FWu7ytd8rUInxezQ=	// Jacob Grimm
+DD7kA0ee2s52D_YrhbUhstJASp1hkXM5zdvFan_plsk=	// Eolo Martinez
+rf-PZERbnpsOokq9ZwXd2eH0Ad_wLrS9wTUerFVizBw=	// Dalay Con Tao
+-XNwXT8WRM3ilnJDqbPWtUp8jxuvHyb_LlMeXaTcjyw=	// Doctor Tchaikovsky
+oQhfeY96nM0DXjQ_wQ3btW2ne4odOzrPEGXsE-uzKws=	// George Mattson
+StyjJWF1106cxLeB0fe0PYiuq6B-npOOw8uXZ1MHE9o=	// Capitan Rhodes
+GV3mD33VIJDSrtjOlWpDbmqY40bvSAonrjAeg0xWGGM=	// Sergy Volako
+23OkUbKE2p-4ZutWUc_dZ_lsLYljOPVIu-yzqr3L7ag=	// Lazarus Moonkay
+M9lSWPoL2q7DDQC4IOc6b0u1RC2RLYxE5DHEE6B7ED8=	// Rick Lane
+VmSnQGLMZ1PuLb3-LidzUAWY3AqxfxnelgZoxqp6xjE=	// Damon Scott
+RqeBr0QyNgTpJYMBx6rBz1touzk-nxH6CUSi7qHLT1A=	// Iosif Vasiliev
+vA-cU8nL33Iv6tHnOJUQi8mArEdOSsbyf45pnAnLoPg=	// Myke Towers
+3PSQMEGU2Raluzvr9RVwbMoFFVeHLCTGEEs3enwkqgc=	// Fedor Petrov
+O3s-nqHoe-9JPHeNhkqSYQ7G97wkp90gwtXzOxuyLkw=	// Alaska Petrov
+mCLHKWMjPd7G0H0ARK3Oy3OqjwWaXM2TouM32ZVRhTk=	// ony kalashnikov
+8fvE5DGGq-tC4t7-NSng9fu_EzA4b841taxtE9kmZ30=	// Mohamed Akram
+itCAnKBJ4fuj8qc9VrASz964fnR3vo1kvKvLdh-KXaE=	// Jeremy Fairchild
+a-mqROlUXpoStJdrTeaN-DVp_L5N76ScbMKVU_WvQ6A=	// Zoran Tafra
+q3ZfVIS8vrGJxKHRF0_IexzaQImevv8bdghlg1lJcpk=	// Gabriel Camacho
+4-_xKZSImr9LA2CfktWQrwCe4Bu7C5nI5jgGC7EwMV8=	// jhon orailli
+a-mqROlUXpoStJdrTeaN-DVp_L5N76ScbMKVU_WvQ6A=	// Zoran Tafra
+sN0TI73KkE18TRIG-1c89ZvXgkoTetglsxnX-XwEl78=	// John Calhoun
+xMJaHxg36zwCH3-64zEwa4CM4pABULU8yuyuLwrZ7hs=	// Vladimir Petrov
+7Hva7EHLMaoNwkqbJuJg8NHSUQvhypLy_AOB3XufJik=	// Slag Westerfield
+EPjJ4a78a0YCpGJ3ZSCo3yn19DaidfMP93RBHI8lwH0=	// Drako Milosevic
+hl0ZEWIZiXKvJ8g3qffXjsodPo03EA82ivddwHUccEU=	// Einar Rackham
+Azq4EX-VjFMWYgYoaQOjlUv8NWJkVQk5ivYaFdvFscE=	// Glaus Power
+_zOO6ddeRFPfWvGzb61E1WrKIpR9V0_ysUqKc07I_kY=	// Yuri Gagarin
+x7v04SQDdZMGiiyD2LTMbpFOZc_PvrlfpgrCNtN3WgI=	// Christopher Scott
+3ZNcXXJwourkV1Qkp32DF06VnxTQ9gLsavCiOI8bY9I=	// Yeremi Sant
+VTEF45h46y8DeuLOmugI59unai97eYHWIMAc-VkEiaE=	// Joselillo
+rO3TSz5f0Dzxet5E9-aNmgYEPmdel4urVyB0IM7Vq8U=	// Yakov Baratynski
+qLLG-PeOjxQwHmveOI34qzWmyfiKa8b4FWi9k-ulCgk=	// Hector Solís
+YCPHWhHxhSvBlC1yUk4JIPzXkcMVLabTRQ4KXSfiycw=	// Vladimir Malechenkov
+8ZfiEWf7oW6GuoGpPcGaw98EmW2rfWlELB3Z1Mj4eR8=	// Demian Chaves
+Tog4euWgG6RHX3i5Kskj_8HBkvX_dGLT6GZ7ZQK4JrY=	// Dimitri Mendeleyev
+3YxzJj1m6Vcb2ztS9BcgBiet3yfQf2qyqSPc-ILp9BE=	// Crank Frest
+AKITOejKq8i6CKnF_yEpaieL5Vdlxue5xhWW546jXHM=	// George Mork
+Q4RV0JvpphF4IVbNC9sHR1ahbK4gl164diHPOjf_S58=	// Bud Spencer
+Zi8HZWESg0-Ggd2EHR2Hiiq6TDTViyxI7eWdIR1lsOw=	// Hans Hedeby
+2gwPWFhdDhtAAVPBFysXvl-h3zBl9L2wWTY1KGbG4Ek=	// Roman Sholokhov
+vbyNTkHC2q85tToC-QXhq03uhLkc_mtd3bA0uMWNdHs=	// Antonio Diaz
+_PycFZrm8XKt-ca2ofpvcoIKiKkl5jzmkk6_dLJM4JI=	// Desireé Ilyn
+qfzi_6ke9OYeGBzCWkGjyohKQCrLKjA7XJLY7JqBxDA=	// Rolo Creed
