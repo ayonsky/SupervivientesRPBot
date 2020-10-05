@@ -8,17 +8,18 @@ module.exports = {
 	async execute(message, user, MessageEmbed) {
         const newMember = message.guild.members.cache.find(u => u.id === user.id);
         const MemberRole = message.guild.roles.cache.find(role => role.name === "Miembro");
+        const newbieRole = message.guild.roles.cache.find(role => role.name === "Nuevos");
 
         if(!MemberRole) return;
         if(!newMember) return;
         if(newMember.roles.cache.has(MemberRole.id)) return;
 
         newMember.roles.add(MemberRole.id).then(() =>{
-            const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
-                .setColor(green_light)
-                .addField('BIENVENIDO!', "Te damos la bienvenida a la comunidad de **SupervivientesRP**. \n\n En nuestro Discord encontrarás toda la normativa y la información necesaria para que puedas entrar a nuestro servidor. \n\n Para iniciar el proceso de **Whitelist** deberás conectarte a uno de los canales de voz en la categoría correspondiente, y algún miembro del Staff se unirá para realizar una breve entrevista. \n\n Si tienes alguna duda o problema, no dudes en utilizar los canales de soporte al usuario.📩")
-                .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
-                
+                newMember.roles.remove(newbieRole.id)           
+                const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
+                        .setColor(green_light)
+                        .addField('BIENVENIDO!', "Te damos la bienvenida a la comunidad de **SupervivientesRP**. \n\n En nuestro Discord encontrarás toda la normativa y la información necesaria para que puedas entrar a nuestro servidor. \n\n Para iniciar el proceso de **Whitelist** deberás conectarte a uno de los canales de voz en la categoría correspondiente, y algún miembro del Staff se unirá para realizar una breve entrevista. \n\n Si tienes alguna duda o problema, no dudes en utilizar los canales de soporte al usuario.📩")
+                        .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');        
                 newMember.send(embedDMMessage);
         });
 	},
