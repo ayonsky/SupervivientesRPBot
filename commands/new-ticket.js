@@ -19,7 +19,7 @@ module.exports = {
         if (server.channels.cache.some(channel => channel.name == `ticket-${user.id}`)) {
             const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
             .setColor(red_dark)
-            .addField('Centro de Soporte', "Has intentado crear un nuevo **Ticket de soporte** pero ya tienes uno en curso. *Si tienes algún problema con el bot, no dudes en contactar a un miembro del staff.*\n")
+            .addField('Centro de Soporte', "Has intentado crear un nuevo **Ticket de soporte** pero ya tienes uno en curso. \n\n *Si tienes algún problema con el bot, no dudes en contactar a un miembro del staff.*\n")
             .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
             
             user.send(embedDMMessage);
@@ -31,12 +31,17 @@ module.exports = {
                 channel.overwritePermissions([
                     {
                         id: user.id,
-                        allow: ['VIEW_CHANNEL',],
-                        deny: ['ADD_REACTIONS','SEND_MESSAGES']
+                        allow: ['VIEW_CHANNEL','SEND_MESSAGES'],
+                        deny: ['ADD_REACTIONS']
                     },
                     {
                        id: message.author.id,
                         allow: 'VIEW_CHANNEL'
+                    },
+                    {
+                        id: config.moderatorRolID,
+                        allow: ['VIEW_CHANNEL','SEND_MESSAGES'],
+                        deny: ['ADD_REACTIONS']
                     },
                     {
                         id: server.id, // shortcut for @everyone role ID
