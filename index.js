@@ -18,10 +18,32 @@ for (const file of commandFiles) {
 client.once('ready', () => {
     console.log('Bot is Ready!');
     client.commands.get('info-soporte').execute(client, MessageEmbed);
+    client.commands.get('info-whitelist').execute(client, MessageEmbed);
 });
 
 client.on("guildMemberAdd", (member) => {
     client.commands.get('new-member').execute(member, MessageEmbed);
+});
+
+client.on("presenceUpdate", (oldPresence, newPresence) => {
+    if(newPresence.user.username == "Ayonsky") {
+        console.log("nuevo estado: ", newPresence);
+        newPresence.activities.forEach(activity => {
+            if (activity.name == "Twitch") {
+                const streamingRole = newPresence.guild.roles.cache.find(role => role.name === "Streaming");
+                const user = newPresence.guild.members.cache.find(user => user.id === newPresence.user.id);
+
+                if(!streamingRole) return;
+                if(!user) return;
+                if(user.roles.cache.has(streamingRole.id)) return;
+
+                user.roles.add(streamingRole.id);
+
+            }
+        });
+    }
+    // console.log(`${newPresence.user.username} cambiço a ${newPresence.activities}`);
+    
 });
 
 client.on('messageReactionAdd', (messageReaction, user) => {
@@ -30,10 +52,16 @@ client.on('messageReactionAdd', (messageReaction, user) => {
     if(emoji.name == '✅' && message.id ==="712590416209248298"){
         client.commands.get('new-member').execute(message, user, MessageEmbed);
     }
+    if(emoji.name == '📋' && message.channel.id == config.whitelistChannel && message.author != user.id){
+        client.commands.get('ticket-whitelist').execute(message, user, MessageEmbed);
+    }
+    if(emoji.name == '🕑' && message.channel.name.startsWith('whitelist-') && message.author != user.id){
+        client.commands.get('start-whitelist').execute(message, user, MessageEmbed);
+    }
     if(emoji.name == '📩' && message.channel.id == config.supportChannel && message.author != user.id){
         client.commands.get('new-ticket').execute(message, user, MessageEmbed);
     }
-    if(emoji.name == '🗑' && message.channel.name.startsWith('ticket-') && message.author != user.id){
+    if(emoji.name == '🗑' && ( message.channel.name.startsWith('ticket-') || message.channel.name.startsWith('whitelist-') ) && message.author != user.id){
         client.commands.get('delete-channel').execute(message, user, MessageEmbed);
     }
 });
