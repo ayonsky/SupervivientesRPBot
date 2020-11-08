@@ -25,25 +25,21 @@ client.on("guildMemberAdd", (member) => {
     client.commands.get('new-member').execute(member, MessageEmbed);
 });
 
-client.on("presenceUpdate", (oldPresence, newPresence) => {
-    if(newPresence.user.username == "Ayonsky") {
-        console.log("nuevo estado: ", newPresence);
-        newPresence.activities.forEach(activity => {
-            if (activity.name == "Twitch") {
-                const streamingRole = newPresence.guild.roles.cache.find(role => role.name === "Streaming");
-                const user = newPresence.guild.members.cache.find(user => user.id === newPresence.user.id);
+client.on("guildMemberRemove", function(member){
 
-                if(!streamingRole) return;
-                if(!user) return;
-                if(user.roles.cache.has(streamingRole.id)) return;
-
-                user.roles.add(streamingRole.id);
-
-            }
-        });
-    }
-    // console.log(`${newPresence.user.username} cambiço a ${newPresence.activities}`);
+    const notificationsChannel = member.guild.channels.cache.get(config.notificationChannel);
     
+    if(member._roles.includes(config.supervivienteRolID)) {
+        const newEmbed = new MessageEmbed()
+            .setColor(red_dark)
+            .addField('ACCIÓN NECESARIA',`El usuario <@${member.user.id}> registrado según su historia como **${member.nickname}** ha abandonado el servidor de Discord, por lo que se aconseja darle de baja en la **whitelist** del servidor.`)
+            .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+            notificationsChannel.send(newEmbed)
+    }    
+});
+
+client.on("presenceUpdate", (oldPresence, newPresence) => {
+    client.commands.get('presence-manager').execute(oldPresence, newPresence, MessageEmbed);
 });
 
 client.on('messageReactionAdd', (messageReaction, user) => {
@@ -70,6 +66,8 @@ client.on('message', message => {
     if (!message.content.startsWith(config.prefix) || message.author.bot){
         if(message.channel.id == config.registerUIDChannel && !message.author.bot) {
             message.delete();
+        } else if(message.channel.id == config.UIDChannel && !message.author.bot) {
+            message.delete();
         }
         return;
     } 
@@ -80,8 +78,10 @@ client.on('message', message => {
     if (!client.commands.has(command)) return;
 
     try {
-        if(message.channel.id == config.registerUIDChannel) {
-            client.commands.get(command).execute(message, args, MessageEmbed);
+        if(command === 'upload-uid' && message.channel.id == config.registerUIDChannel) {
+            client.commands.get('upload-uid').execute(message, args, MessageEmbed);
+        } else if(command === 'uid' && message.channel.id == config.UIDChannel) {
+            client.commands.get('uid').execute(message, args, MessageEmbed);
         }
     } catch (error) {
         console.error(error);

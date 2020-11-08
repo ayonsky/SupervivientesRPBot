@@ -11,7 +11,7 @@ module.exports = {
         const newEmbed = new MessageEmbed()
         .setColor(red_dark)
         .setDescription('El canal se borrará en 5 segundos...')
-        .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+        .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
     
         channelToBeDeleted.send(newEmbed).then(() => {
             setTimeout(() =>  {

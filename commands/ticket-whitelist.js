@@ -20,7 +20,7 @@ module.exports = {
             const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
             .setColor(red_dark)
             .addField('WHITELIST', "Has intentado iniciar un nuevo proceso de **Whitelist** pero ya tienes uno en curso. *Si tienes algún problema, no dudes en utilizar los canales de soporte.*\n")
-            .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+            .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
             
             user.send(embedDMMessage);
             return;
@@ -54,7 +54,7 @@ module.exports = {
                     .setDescription(`<@${user.id}> Has iniciado un proceso de Whitelist.`)
                     .addField('RECUERDA', 'Tendrás **30 minutos** a partir de que el bot te envíe las preguntas para responderlas, enviando el documento con las respuestas. Transcurrido el tiempo, el bot finalizará el proceso y si no has enviado las respuestas tendrás que repetir el proceso.\n')
                     .addField('INDICACIONES', 'El bot escogerá 10 preguntas al azar que deberás copiar y responder en un documento de texto de tu preferencia (Word, Bloc de Notas, etc...) para luego adjuntarlo en este ticket **antes de que finalice el tiempo**. \n\n Si estás listo para comenzar, reacciona con el emote 🕑. De lo contrario, si quieres borrar la solicitud, reacciona con el emote 🗑')
-                    .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+                    .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
                     
                     channel.send(embedDMMessage).then( async sentMessage => {
                         try {

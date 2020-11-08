@@ -17,7 +17,7 @@ module.exports = {
             { name: 'Recuerda', value: 'En la mayoría de los casos de asistencia **on-rol**, necesitaremos de una grabación de lo sucedido para agilizar el soporte.' },
         )
         // .setImage('https://i.imgur.com/A3WYVlK.png')
-        .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+        .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
     
         supportChannel.send(newEmbed).then(sentMessage => {
             sentMessage.react('📩');

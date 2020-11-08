@@ -17,7 +17,7 @@ module.exports = {
             { name: 'INDICACIONES', value: 'Tendrás 30 minutos para responder el cuestionario, transcurrido el tiempo, el bot finalizará el proceso y no te permitirá escribir en el ticket de la whitelist.\n\n Deberás esperar a que un miembro del Staff revise tu resultado para recibir o no el **APTO**. Te recomiendo leer bien la normativa antes de empezar.\n\n Para iniciar el proceso debes reaccionar al emote 📋' },
         )
         // .setImage('https://i.imgur.com/A3WYVlK.png')
-        .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+        .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
     
         whitelistlChannel.send(newEmbed).then(sentMessage => {
             sentMessage.react('📋');

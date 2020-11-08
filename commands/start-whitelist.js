@@ -63,7 +63,7 @@ module.exports = {
         const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
             .setColor(orange)
             .setTitle('PREGUNTAS')
-            .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+            .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
 
         userRandomQuestions.forEach(async (question, index) => {
             embedDMMessage.addField(`Pregunta Nro.${index + 1}`, question);
@@ -95,7 +95,7 @@ module.exports = {
                     .setColor(blue_dark)
                     .setTitle('WHITELIST FINALIZADA')
                     .setDescription(`<@${user.id}> Ha finalizado el tiempo reglamentario. \n\n Un miembro del Staff revisará tu presentación lo antes posible y se pondrá en contacto contigo en este mismo ticket. \n\n Si quieres cancelar esta solicitud para iniciar una nueva, reacciona al emote 🗑 de este mensaje.`)
-                    .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+                    .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
                     
                     actualWhitelistChannel.send(embedDMMessage).then( async sentMessage => {
                         try {

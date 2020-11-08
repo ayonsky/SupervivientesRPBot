@@ -20,7 +20,7 @@ module.exports = {
                                 const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
                                         .setColor(green_light)
                                         .addField('BIENVENIDO!', "Te damos la bienvenida a la comunidad de **SupervivientesRP**. \n\n En nuestro Discord encontrarás toda la normativa y la información necesaria para que puedas entrar a nuestro servidor. \n\n Para iniciar el proceso de **Whitelist** o **Presentar tu historia** deberás seguir las instrucciones que conseguirás en las categorías correspondientes. \n\n Si tienes alguna duda o problema, no dudes en utilizar los canales de soporte al usuario.📩")
-                                        .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');        
+                                        .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');        
                                 newUser.send(embedDMMessage);
                         });
                 } catch(e) {

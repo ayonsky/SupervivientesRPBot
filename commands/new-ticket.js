@@ -20,7 +20,7 @@ module.exports = {
             const embedDMMessage = new MessageEmbed()                                                                                   // Embed message to DM the user a message with the error and the correct way to use the channel
             .setColor(red_dark)
             .addField('Centro de Soporte', "Has intentado crear un nuevo **Ticket de soporte** pero ya tienes uno en curso. \n\n *Si tienes algún problema con el bot, no dudes en contactar a un miembro del staff.*\n")
-            .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+            .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
             
             user.send(embedDMMessage);
             return;
@@ -54,7 +54,7 @@ module.exports = {
                     .setDescription(`<@${user.id}> Has creado un ticket de soporte. `)
                     .addField('INDICACIONES', 'A continuación, explica brevemente lo que necesites y uno de los miembros del Staff te atenderá lo antes posible.\n\n Si deseas dar por finalizado el soporte o eliminar el ticket puedes reaccionar al emote 🗑 de este mensaje.')
                     .addField('RECUERDA', 'Si vas a realizar un reporte acerca de un rol, deberás tener a la mano una grabación de lo sucedido, ya que lo más probable es que el Staff te lo solicite.')
-                    .setFooter('SupervivientesRPBot programado por Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
+                    .setFooter('2020 © SupervivientesRP | SupervivientesRP Discord Bot | by Ayonsky', 'https://i.imgur.com/A3WYVlK.png');
                     
                     channel.send(embedDMMessage).then( async sentMessage => {
                         try {
