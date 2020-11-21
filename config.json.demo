@@ -2,9 +2,15 @@
     "prefix": "!",
     "whitelistCategory": "752817061193056347",
     "whitelistChannel": "752818146372747295",
-    "presentarWhitelistVoiceChannel": "755069617902452861",
-    "whitelistFinalizadaVoiceChannel": "755069333922775073",
-    "normativaChannel":"712585550443446282",
-    "normativaMessage":"712590416209248298",
-	"token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "normativaChannel": "712585550443446282",
+    "registerUIDChannel": "757212728271175690",
+    "normativaMessage": "712590416209248298",
+    "supportChannel": "762632850645581834",
+    "twichStreamChannel":"766301376203718656",
+    "ticketCategory": "712625931604328489",
+    "moderatorRolID": "712574141789634641",
+    "supervivienteRolID": "712589999358345217",
+    "UIDChannel": "755357392115597383",
+    "notificationChannel": "769538057589358613",
+	"token": "YOUR-DISCORD-BOT-TOKEN-HERE"
 }
