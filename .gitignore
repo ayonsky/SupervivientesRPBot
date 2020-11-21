@@ -1,3 +1,4 @@
+config.json
 /node_modules
 store/*.txt
 node_modules
